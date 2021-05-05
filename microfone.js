@@ -5,6 +5,7 @@ let microfone,
   devices,
   dataView;
 start.disabled = true
+barValue.disabled = true
 
 let len
 let bars;
@@ -24,6 +25,14 @@ navigator.mediaDevices.enumerateDevices().then(devices => {
 })
 
 
+function drawBars () {
+  visualizationEl.innerHTML = ''
+  for (let i = 0; i < len; i++) {
+
+    let micro = visualizationEl.appendChild(document.createElement('div'))
+    micro.classList = "microfone"
+  }
+}
 function reset() {
   visualizationEl.innerHTML = ''
   if (audioContext) {
@@ -42,16 +51,14 @@ function init() {
 
 
   analyser = audioContext.createAnalyser()
-  analyser.fftSize = 512
-  len = analyser.frequencyBinCount / Math.pow(2, 2)
+  analyser.fftSize = 1024
+  barValue.max = Math.log2(analyser.fftSize) - 1
+  len = analyser.frequencyBinCount / Math.pow(2, barValue.value)
   bufferSource = audioContext.createMediaStreamSource(microfone)
 
   dataView = new Uint8Array(analyser.frequencyBinCount)
-  for (let i = 0; i < len; i++) {
-
-    let micro = visualizationEl.appendChild(document.createElement('div'))
-    micro.classList = "microfone"
-  }
+  barValue.disabled = false
+  drawBars()
   bars = document.querySelectorAll('.microfone')
   bufferSource.connect(analyser).connect(audioContext.destination);
 
@@ -81,7 +88,7 @@ function visualization() {
 
 start.addEventListener('click', init)
 
-window.addEventListener('selectmediadevice', event => {
+window.addEventListener('custom:selectmediadevice', event => {
 
   reset()
   constraint.audio.deviceId = event.detail
@@ -89,4 +96,12 @@ window.addEventListener('selectmediadevice', event => {
     microfone = stream
     start.disabled = false
   })
+})
+
+barValue.addEventListener('change', e => {
+  if (analyser) {
+    len = analyser.frequencyBinCount / Math.pow(2, barValue.value)
+    drawBars()
+
+  }
 })

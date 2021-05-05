@@ -1,4 +1,13 @@
-
+body {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.wrapper {
+  max-width: 900px;
+}
 .microfone {
   width: 10px;
   height: 120px;

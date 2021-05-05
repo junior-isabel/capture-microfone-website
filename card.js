@@ -38,7 +38,7 @@ class CardInfo extends HTMLElement {
 
   selectMediaSource (evt) {
    
-    const event = new CustomEvent("selectmediadevice", {
+    const event = new CustomEvent("custom:selectmediadevice", {
       detail: evt
     })
     window.dispatchEvent(event)

@@ -9,13 +9,17 @@
     <script src="./card.js"></script>
   </head>
   <body>
-    
-    <button id="start">Start Microfone</button>
-    <div class="container-controller">
-      <div class="visualization" id="visualizationEl"></div>
-      <div class="controllers" id="controllers"></div>
+    <div class="wrapper">
+      <button id="start">Start Microfone</button>
+      <label for="bars">Bars <input type="range" value="2" name="bars" step="1"
+          min="1" id="barValue"></label>
+      <div class="container-controller">
+        <div class="visualization" id="visualizationEl"></div>
+        <div class="controllers" id="controllers"></div>
+      </div>
+
     </div>
-    
+
     <script src="./microfone.js"></script>
   </body>
 </html>
