@@ -1,0 +1,33 @@
+
+.microfone {
+  width: 10px;
+  height: 120px;
+  border: 1px solid #000;
+  position: absolute;
+  transition: all 120ms linear 0s;
+}
+
+.visualization {
+  flex: 3;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 500px;
+  border: 1px solid #000;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container-controller {
+  display: flex;
+}
+
+.controllers {
+  border: 1px solid red;
+  flex: 1;
+  min-width: 380px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
