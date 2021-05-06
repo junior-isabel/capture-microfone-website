@@ -30,7 +30,7 @@ function drawBars () {
   for (let i = 0; i < len; i++) {
 
     let micro = visualizationEl.appendChild(document.createElement('div'))
-    micro.classList = "microfone"
+    micro.classList = "bar"
   }
 }
 function reset() {
@@ -59,7 +59,7 @@ function init() {
   dataView = new Uint8Array(analyser.frequencyBinCount)
   barValue.disabled = false
   drawBars()
-  bars = document.querySelectorAll('.microfone')
+  bars = document.querySelectorAll('.bar')
   bufferSource.connect(analyser).connect(audioContext.destination);
 
   audioContext.resume()

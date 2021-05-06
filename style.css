@@ -8,12 +8,12 @@ body {
 .wrapper {
   max-width: 900px;
 }
-.microfone {
+.bar {
   width: 10px;
   height: 120px;
   border: 1px solid #000;
   position: absolute;
-  transition: all 120ms linear 0s;
+  pointer-events: none;
 }
 
 .visualization {
@@ -22,21 +22,39 @@ body {
   flex-wrap: wrap;
   width: 100%;
   max-width: 500px;
-  border: 1px solid #000;
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.visualization:hover {
+  opacity: 0.4;
 }
 .container-controller {
   display: flex;
+  flex-direction: column;
+  position: relative;
 }
 
 .controllers {
-  border: 1px solid red;
   flex: 1;
-  min-width: 380px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #fafafa;
+}
+@media screen and (min-width: 768px) {
+  .container-controller {
+    flex-direction: row;
+  }
+  .controllers {
+    min-width: 380px;
+    justify-content: flex-start;
+
+  }
 }
